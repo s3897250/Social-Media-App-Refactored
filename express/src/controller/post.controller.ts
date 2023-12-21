@@ -4,9 +4,13 @@ import express, { Request, Response } from 'express';
 
 
 exports.create = async (req: Request, res: Response) => {
-  const result = await prisma.product.create({
+
+  const result = await prisma.post.create({
     data: {
-      user: parseInt(req.params.id)
+      title: req.body.title,
+      body: req.body.body,
+      image: req.body.image,
+      userUser_id: req.body.userId
     }
   });
 

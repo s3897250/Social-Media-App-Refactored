@@ -1,13 +1,17 @@
 // src/index.js
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
-import productRoutes from './route/user.route.ts';
-const cors = require("cors");
+import userRoutes from './route/user.route.ts';
+import { prisma_seed } from "./database/index.ts";
 
 dotenv.config();
 
+const cors = require("cors");
 const app: Express = express();
 const port = process.env.PORT || 3000;
+
+// Seed database
+prisma_seed()
 
 // Add CORS suport.
 app.use(cors());
@@ -16,7 +20,7 @@ app.use(cors());
 app.use(express.json());
 
 // Using routes
-productRoutes(app)
+userRoutes(app)
 
 
 app.get("/", (req: Request, res: Response) => {
