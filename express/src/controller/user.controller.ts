@@ -44,3 +44,38 @@ exports.allUsers = async (req: Request, res: Response) => {
 }
 
 
+// Updates user
+exports.updateUser = async (req: Request, res: Response) => {
+  const result = await prisma.user.update({
+    where: {
+      user_id: req.body.id
+    },
+    data: {
+      username: req.body.username,
+      password_hash: req.body.password_hash,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      profile_pic: req.body.profile_pic,
+      date_joined: req.body.date_joined,
+      followers: req.body.followers,
+      following: req.body.following,
+      blocked: req.body.blocked
+    }
+  })
+
+  res.json(result)
+}
+
+
+// Deletes user
+exports.updateUser = async (req: Request, res: Response) => {
+  const result = await prisma.user.delete({
+    where: {
+      user_id: req.body.id,
+    }
+  })
+
+  res.json(result)
+}
+
+
