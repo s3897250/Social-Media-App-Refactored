@@ -1,29 +1,29 @@
-// import express, { Express } from 'express';
-// const controller = require('../controller/user.controller.ts');
+import express, { Express } from 'express';
+const controller = require('../controller/user.controller.ts');
 
-// export default (app: Express) => {
-//     const router = express.Router();
-    
-//   // Select all posts.
-//   router.get("/", controller.all);
+export default (app: Express) => {
+    const router = express.Router();
 
-//   // Select a post from specific user.
-//   router.get("/:id", controller.postFromUser);
+    // Select all posts.
+    router.get("/", controller.all);
 
-//   // Select all posts from specific user.
-//   router.get("/multiple/:id", controller.postsFromUser);
+    // Select a post from specific user.
+    router.get("/:id", controller.postFromUser);
 
-//   // Create a new post.
-//   router.post("/", controller.create);
+    // Select all posts from specific user.
+    router.get("/multiple/:id", controller.postsFromUser);
 
-//   // Deletes a given post
-//   router.delete("/delete/:id", controller.deletePost)
+    // Create a new post.
+    router.post("/", controller.create);
 
-//   // Updates a given post
-//   router.post("/update", controller.updatePost)
+    // Deletes a given post
+    router.delete("/delete/:id", controller.deletePost)
+
+    // Updates a given post
+    router.post("/update", controller.updatePost)
 
 
 
-//   // Add routes to server.
-//   app.use("/api/posts", router);
-// };
+    // Add routes to server.
+    app.use("/api/posts", router);
+};
