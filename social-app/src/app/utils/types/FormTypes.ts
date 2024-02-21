@@ -2,8 +2,8 @@
 export type UserForm = {
     email: string,
     password: string,
-    firstName: string,
-    lastName: string,
+    first_name: string,
+    last_name: string,
     street: string,
     city: string,
     state: string,

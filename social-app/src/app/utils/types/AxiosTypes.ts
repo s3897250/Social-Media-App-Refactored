@@ -3,8 +3,8 @@ import React from "react";
 // Axios Types ------------------------------
 
 export type User = {
-    username: string,
-    password_hash: string,
+    email: string,
+    password: string,
     first_name: string,
     last_name: string,
     profile_pic: string,

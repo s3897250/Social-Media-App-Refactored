@@ -2,8 +2,8 @@
 // Dedicated for initializing states
 
 export const userStateType = {
-    username: "",
-    password_hash: "",
+    email: "",
+    password: "",
     first_name: "",
     last_name: "",
     profile_pic: "",
@@ -15,8 +15,8 @@ export const userStateType = {
 }
 
 export const userStateErrorsType = {
-    usernameError: "",
-    password_hashError: "",
+    emailError: "",
+    passwordError: "",
     first_nameError: "",
     last_nameError: "",
     profile_picError: "",
