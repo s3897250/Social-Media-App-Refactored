@@ -6,6 +6,7 @@ import { UserForm } from "../../../utils/types/FormTypes";
 import { Validation } from "./Validation";
 
 import "./Signup.css";
+import { Button, Card, Form } from 'react-bootstrap';
 
 /*
     Functions required:
@@ -35,49 +36,81 @@ function Signup() {
 
         const ErrorsObj = Validation(userState);
 
+        if (ErrorsObj.validationSuccess) {
+
+            // const response = await createSuper(userState);
+        }
+
     }
 
 
     return (
         <div className="sign-up">
 
-            <div className="sign-up-box">
-                <input
-                    name="email"
-                    type="email"
-                    onChange={(e) => handleChange("email", e.target.value)}
-                />
-            </div>
+            <Form onSubmit={handleSubmit}>
 
-            {/* Interesting how coupled the code is. A change in the string
-                is interpreted by the ts compiler against the parameters of 
-                the "handleChange" function */}
+                <Form.Group className="">
+                    <Form.Control
+                        onChange={(e) => handleChange("email", e.target.value)}
+                        isInvalid={!!errors.emailError}
+                        isValid={!errors.emailError && errors.emailError !== ''}
+                        type="email"
+                        placeholder="Email Address"
+                    />
 
-            <div className="sign-up-box">
-                <input
-                    name="first_name"
-                    type="first_name"
-                    onChange={(e) => handleChange("first_name", e.target.value)} />
-            </div>
+                    <Form.Control.Feedback type="invalid">{errors.emailError}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="valid">Valid</Form.Control.Feedback>
+                </Form.Group>
 
-            <div className="sign-up-box">
-                <input
-                    name="last_name"
-                    type="last_name"
-                    onChange={(e) => handleChange("last_name", e.target.value)} />
-            </div>
+                {/* Interesting how coupled the code is. A change in the string
+                            is interpreted by the ts compiler against the parameters of 
+                            the "handleChange" function */}
 
-            <div className="sign-up-box">
-                <input
-                    name="password"
-                    type="password"
-                    onChange={(e) => handleChange("password", e.target.value)} />
-            </div>
+                <Form.Group className="">
+                    <Form.Control
+                        onChange={(e) => handleChange("first_name", e.target.value)}
+                        isInvalid={!!errors.first_nameError}
+                        isValid={!errors.first_nameError && errors.first_nameError !== ''}
+                        type="first_name"
+                        placeholder="First Name"
+                    />
 
+                    <Form.Control.Feedback type="invalid">{errors.first_nameError}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="valid">Valid</Form.Control.Feedback>
+                </Form.Group>
 
+                <Form.Group className="">
+                    <Form.Control
+                        onChange={(e) => handleChange("last_name", e.target.value)}
+                        isInvalid={!!errors.last_nameError}
+                        isValid={!errors.last_nameError && errors.last_nameError !== ''}
+                        type="last_name"
+                        placeholder="Last Name"
+                    />
 
-            <div className="sign-up-box">
-            </div>
+                    <Form.Control.Feedback type="invalid">{errors.last_nameError}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="valid">Valid</Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group className="">
+                    <Form.Control
+                        onChange={(e) => handleChange("password", e.target.value)}
+                        isInvalid={!!errors.passwordError}
+                        isValid={!errors.passwordError && errors.passwordError !== ''}
+                        type="password"
+                        placeholder="Password"
+                    />
+
+                    <Form.Control.Feedback type="invalid">{errors.passwordError}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="valid">Valid</Form.Control.Feedback>
+                </Form.Group>
+
+                <div className="">
+                    <Button type="submit" variant="success">Submit</Button>
+                </div>
+
+            </Form>
+
 
         </div>
     )
