@@ -3,6 +3,7 @@ import React from "react";
 // Axios Types ------------------------------
 
 export type User = {
+    user_id: number,
     email: string,
     password: string,
     first_name: string,
@@ -13,4 +14,10 @@ export type User = {
     following: string,
     blocked: boolean
 }
+
+export type AuthUser = {
+    user: User,
+    jwtToken: string
+}
+
 

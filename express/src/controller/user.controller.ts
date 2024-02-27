@@ -7,8 +7,8 @@ import { Request, Response } from 'express';
 exports.createUser = async (req: Request, res: Response) => {
   const result = await prisma.user.create({
     data: {
-      username: req.body.username,
-      password_hash: req.body.password_hash,
+      email: req.body.username,
+      password: req.body.password_hash,
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       profile_pic: req.body.profile_pic || "none",
@@ -51,8 +51,8 @@ exports.updateUser = async (req: Request, res: Response) => {
       user_id: req.body.id
     },
     data: {
-      username: req.body.username,
-      password_hash: req.body.password_hash,
+      email: req.body.username,
+      password: req.body.password_hash,
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       profile_pic: req.body.profile_pic,

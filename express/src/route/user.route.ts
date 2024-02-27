@@ -4,8 +4,8 @@ const controller = require('../controller/user.controller.ts');
 export default (app: Express) => {
     const router = express.Router();
 
-    // Create a product.
-    router.get("/createProduct/:id", controller.createUser);
+    // Create a user
+    router.get("/create", controller.createUser);
 
     // Select all users.
     router.get("/all", controller.allUsers);

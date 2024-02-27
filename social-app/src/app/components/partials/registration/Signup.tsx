@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { userContext } from "../../context/UserContex";  // Globally Updated
-import { userStateType, userStateErrorsType } from "../../../utils/InitialState";
+import { userStateInitial, userStateErrorsType } from "../../../utils/InitialState";
 import { UserForm } from "../../../utils/types/FormTypes";
 import { Validation } from "./Validation";
+import { createUser } from "../../../services/axiosService";
 
 import "./Signup.css";
 import { Button, Card, Form } from 'react-bootstrap';
@@ -17,7 +18,7 @@ import { Button, Card, Form } from 'react-bootstrap';
 
 function Signup() {
 
-    const [userState, setUserState] = useState(userStateType);
+    const [userState, setUserState] = useState(userStateInitial);
     const [errors, setErrors] = useState(userStateErrorsType);
     const { setUser } = useContext(userContext);
     const navigate = useNavigate()
@@ -26,21 +27,32 @@ function Signup() {
     function handleChange<P extends keyof UserForm>(prop: P, value: UserForm[P]) {
 
         setUserState({ ...userState, [prop]: value })
-        console.log(userState)
+        // console.log(userState)
     }
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 
         // Prevents submission of form
         event.preventDefault();
-
         const ErrorsObj = Validation(userState);
 
         if (ErrorsObj.validationSuccess) {
+            const response = await createUser(userState);
 
-            // const response = await createSuper(userState);
+            if (response.status === 201) {
+                setUser(response.data.user)
+                localStorage.setItem('token', response.data.jwtToken)
+
+                navigate('/')
+            }
+            else {
+                alert('Couldn\'t accept submission')
+            }
+
         }
-
+        else {
+            setErrors(ErrorsObj)
+        }
     }
 
 
@@ -52,8 +64,8 @@ function Signup() {
                 <Form.Group className="">
                     <Form.Control
                         onChange={(e) => handleChange("email", e.target.value)}
-                        isInvalid={!!errors.emailError}
-                        isValid={!errors.emailError && errors.emailError !== ''}
+                        isInvalid={!!errors.emailError}  // contains error string, therefore true
+                        isValid={!errors.emailError && errors.emailError !== ''}  // empty +
                         type="email"
                         placeholder="Email Address"
                     />
