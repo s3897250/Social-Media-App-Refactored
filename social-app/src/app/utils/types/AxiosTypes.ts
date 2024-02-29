@@ -2,6 +2,9 @@ import React from "react";
 
 // Axios Types ------------------------------
 
+
+// Type for retrieving from Server API
+
 export type User = {
     user_id: number,
     email: string,
@@ -17,7 +20,7 @@ export type User = {
 
 export type AuthUser = {
     user: User,
-    jwtToken: string
+    token: string
 }
 
 

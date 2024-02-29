@@ -3,7 +3,6 @@ import { userStateErrorsType as ErrorsObjInitial, userStateType } from "../../..
 import { UserForm } from "../../../utils/types/FormTypes"
 
 export function Validation(user: userStateType) {
-    console.log(user);
 
     // Initialize ErrorsObj with empty error messages and validationSuccess flag
     let ErrorsObj = {

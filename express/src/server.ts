@@ -1,11 +1,9 @@
 // src/index.js
 import express, { Express, Request, Response } from "express";
-import dotenv from "dotenv";
 import userRoutes from './route/user.route.ts';
 import { prisma_seed } from "./database/index.ts";
 
-dotenv.config();
-
+require('dotenv').config();
 const cors = require("cors");
 const app: Express = express();
 const port = process.env.PORT || 3000;

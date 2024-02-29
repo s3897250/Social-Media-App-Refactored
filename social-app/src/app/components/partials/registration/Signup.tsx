@@ -37,18 +37,18 @@ function Signup() {
         const ErrorsObj = Validation(userState);
 
         if (ErrorsObj.validationSuccess) {
+
             const response = await createUser(userState);
 
-            if (response.status === 201) {
+            if (response.status >= 200 && response.status < 300) {
                 setUser(response.data.user)
-                localStorage.setItem('token', response.data.jwtToken)
+                localStorage.setItem('token', response.data.token)
 
                 navigate('/')
             }
             else {
                 alert('Couldn\'t accept submission')
             }
-
         }
         else {
             setErrors(ErrorsObj)
