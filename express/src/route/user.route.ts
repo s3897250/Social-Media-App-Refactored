@@ -1,22 +1,25 @@
 import express, { Express } from 'express';
+import { authenticateToken } from '../authMiddleware';
+import jwt from 'jsonwebtoken'
+
 const controller = require('../controller/user.controller.ts');
 
 export default (app: Express) => {
     const router = express.Router();
 
-    // Create a product.
-    router.get("/createProduct/:id", controller.createUser);
+    // Create a user
+    router.post("/create", controller.createUser);
 
-    // Select all users.
-    router.get("/all", controller.allUsers);
+    // // Select all users.
+    // router.get("/all", authenticateToken, controller.allUsers);
 
-    // Select a single user with id.
-    router.get("/select/:id", controller.oneUser);
+    // // Select a single user with id.
+    // router.get("/select/:id", authenticateToken, controller.oneUser);
 
-    // // Select one user from the database if username and password are a match.
-    // router.get("/login", controller.login);
+    // Select one user from the database if username and password are a match.
+    router.get("/login", authenticateToken, controller.userLogin);
 
-    // // Create a new user.
+    // // Create a new user.    
     // router.post("/", controller.create);
 
     // // Updates an existing user

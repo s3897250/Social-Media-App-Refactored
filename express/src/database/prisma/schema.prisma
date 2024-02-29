@@ -10,16 +10,16 @@ datasource db {
 // Models
 
 model User {
-  user_id       BigInt  @id @default(autoincrement())
-  username      String? @db.VarChar(32)
-  password_hash String  @db.VarChar(96)
-  first_name    String  @db.VarChar(40)
-  last_name     String  @db.VarChar(40)
-  profile_pic   String? @default("none")
-  date_joined   String? @default("none")
-  followers     String? @default("[]") // JSON string
-  following     String? @default("[]") // JSON string
-  blocked       Boolean @default(false)
+  user_id     BigInt  @id @default(autoincrement())
+  email       String  @unique @db.VarChar(32)
+  password    String  @db.VarChar(96)
+  first_name  String  @db.VarChar(40)
+  last_name   String  @db.VarChar(40)
+  profile_pic String? @default("none")
+  date_joined String? @default("none")
+  followers   String? @default("[]") // JSON string
+  following   String? @default("[]") // JSON string
+  blocked     Boolean @default(false)
 
   Post Post[]
 }
