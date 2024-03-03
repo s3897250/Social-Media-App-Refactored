@@ -32,7 +32,7 @@ exports.createUser = async (req: Request, res: Response) => {
   // Generate JWT token
   const token = jwt.sign(
     { email: user.email },
-    "process.env.JWT_SECRET",
+    process.env.ACCESS_TOKEN_SECRET as string,
     { expiresIn: '24h' }
   );
 
@@ -47,6 +47,9 @@ exports.createUser = async (req: Request, res: Response) => {
 
 // Find single user (by url param id)
 exports.userLogin = async (req: Request, res: Response) => {
+
+  console.log(req.body)
+
   try {
     const user = await prisma.user.findFirst({
       where: {
@@ -58,21 +61,33 @@ exports.userLogin = async (req: Request, res: Response) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    const validPassword = req.body.password === user.password;
+    console.log(user)
+
+
+    const validPassword = req.body.user.password === user.password;
 
     if (!validPassword) {
       return res.status(401).json({ message: 'Invalid password' });
     }
 
+    console.log("passed password")
+
+
     // Generate JWT token
     const token = jwt.sign(
       { email: user.email },
-      "process.env.JWT_SECRET",
+      process.env.ACCESS_TOKEN_SECRET as string,
       { expiresIn: '24h' }
     );
 
-    res.json({ user, token });
+    // Serialize the response with safeJsonStringify to handle BigInt
+    const serializedResponse = safeJsonStringify({ user, token });
+
+    res.json(JSON.parse(serializedResponse))
+
   } catch (error) {
+
+    console.log(error)
     res.status(500).json({ error: 'Unsucessful retreival of user' });
   }
 }

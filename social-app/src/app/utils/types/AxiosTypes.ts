@@ -23,4 +23,8 @@ export type AuthUser = {
     token: string
 }
 
+export type LoginUserType = {
+    email: string,
+    password: string
+}
 

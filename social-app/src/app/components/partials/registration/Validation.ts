@@ -1,5 +1,5 @@
 
-import { userStateErrorsType as ErrorsObjInitial, userStateType } from "../../../utils/InitialState"
+import { userStateType, userStateLoginType, userLoginStateErrorsInitial } from "../../../utils/InitialState"
 import { UserForm } from "../../../utils/types/FormTypes"
 
 export function Validation(user: userStateType) {
@@ -47,4 +47,14 @@ export function Validation(user: userStateType) {
     }
 
     return ErrorsObj;
+}
+
+
+export function ValidationLogin(user: userStateLoginType) {
+
+    let userLoginStateErrorsInitial = {
+        emailError: "",
+        passwordError: ""
+    }
+
 }

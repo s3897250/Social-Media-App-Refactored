@@ -10,7 +10,7 @@ export async function prisma_seed() {
 
 
     // // Delete existing users
-    await prisma.user.deleteMany({});
+    // await prisma.user.deleteMany({});
 
 
     // // Creation of multiple data instances

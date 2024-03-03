@@ -1,6 +1,9 @@
 
 // Dedicated for initializing states
 
+
+// User SIGNUP states ------------------------
+
 export const userStateInitial = {
     email: "",
     password: "",
@@ -34,4 +37,22 @@ export const userStateErrorsType = {
     first_nameError: "",
     last_nameError: "",
     validationSuccess: false
+}
+
+
+// User LOGIN States ------------------------
+
+export const userStateLoginInitial = {
+    email: "",
+    password: ""
+}
+
+export type userStateLoginType = {
+    email: string,
+    password: string
+}
+
+export const userLoginStateErrorsInitial = {
+    emailError: "",
+    passwordError: ""
 }

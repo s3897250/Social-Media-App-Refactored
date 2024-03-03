@@ -10,14 +10,14 @@ export default (app: Express) => {
     // Create a user
     router.post("/create", controller.createUser);
 
+    // Select one user from the database if username and password are a match.
+    router.post("/login", authenticateToken, controller.userLogin);
+
     // // Select all users.
     // router.get("/all", authenticateToken, controller.allUsers);
 
     // // Select a single user with id.
     // router.get("/select/:id", authenticateToken, controller.oneUser);
-
-    // Select one user from the database if username and password are a match.
-    router.get("/login", authenticateToken, controller.userLogin);
 
     // // Create a new user.    
     // router.post("/", controller.create);
